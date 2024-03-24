@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+<link rel="icon" href="{% static 'images/logo.png' %}">
+
+
+</head>
+<body>
+<ul>
+
+{% for task in completed_tasks %}
+    <li><a href="/solve_task/{{task.id}}/0">{{task.name}} - COMPLETED </a></li><br>
+{% endfor %}
+
+{% for task in unfinished_tasks %}
+<li><a href="/solve_task/{{task.id}}/0">{{task.name}} -NOT COMPLETED
+</a></li><br>
+{% endfor %}
+
+</ul>
+<h1>Percentage completed: {{percentage}} %</h1>
+</body>
+</html>

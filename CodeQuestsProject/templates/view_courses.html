@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List of our Courses</title>
+    <link rel="stylesheet" href="{% static 'css/view_courses.css' %}">
+    <link rel="icon" href="{% static 'images/logo.png' %}">
+
+</head>
+<body>
+<ul>
+{% for course in courses %}
+<a href="attend_course/{{course.id}}">
+    <div class="course-item">
+          <div class="course-image">
+            <img src="{{ course.logo.url }}" alt="{{ course.name }}">
+          </div>
+          <div class="course-info">
+            <h3 id="mudja">{{course.name}}</h3>
+          </div>
+</a>
+{% endfor %}
+</ul>
+</body>
+</html>

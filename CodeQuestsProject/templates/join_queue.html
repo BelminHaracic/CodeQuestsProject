@@ -1,0 +1,95 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="icon" href="{% static 'images/logo.png' %}">
+
+    <title>Join Queue</title>
+    <style>
+        /* CSS styles */
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f4f4f4;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .button.cancel {
+            background-color: #f44336;
+        }
+        .loader {
+            border: 16px solid #f3f3f3;
+            border-top: 16px solid #3498db;
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            animation: spin 2s linear infinite;
+            margin: 0 auto;
+            margin-bottom: 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+
+     <script>
+        // za prvog usera
+
+            setInterval(function() {
+                // Poll the server every 2 seconds to check if the second user has joined
+                fetch("{% url 'check_match_status' %}")
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.joined) {
+                            // Redirect to the solve_task page when the second user has joined
+                            window.location.href = "{% url 'solve_task' task_id=2 match_id=match_id %}";
+                        }
+                    });
+            }, 1000);
+
+        // za drugog usera
+
+            {% if matched %}
+            setTimeout(function() {
+                window.location.href = "{% url 'solve_task' task_id=2 match_id=match_id %}";
+            }, 1000);
+        {% endif %}
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Join Queue</h1>
+<div id="loader" class="loader" style="display: none;"></div>
+        <p>Waiting for an opponent...</p>
+
+
+
+        <a href="/" class="button">Cancel</a>
+        <a href="/" class="button">Accept</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,82 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Pozadina */
+body {
+  background-color: #000000;
+  background-image: linear-gradient(to bottom, #292929, #1a1a1a);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+/* Stilizacija kontejnera za pretraživanje */
+#search-container {
+  margin-top: 50px;
+  text-align: center;
+  margin-top: 120px;
+}
+
+form {
+  display: inline-block;
+}
+
+input[type="text"] {
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  margin-right: 10px;
+  font-family: "Arial", sans-serif; /* Primjer: postavljanje fonta na Arial */
+  font-weight: bold; /* Primjer: podebljavanje slova */
+}
+button[type="submit"] {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  background-color: #d1b01a;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-family: "Arial", sans-serif; /* Primjer: postavljanje fonta na Arial */
+  font-weight: bold; /* Primjer: podebljavanje slova */
+}
+
+button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+/* Stilizacija liste zadataka */
+#tasks {
+  margin-top: 50px;
+  list-style-type: none;
+}
+
+#tasks li {
+  margin-bottom: 25px;
+ 
+}
+
+#tasks li a {
+  display: inline-block;
+  padding: 10px 20px;
+  color: white;
+  text-decoration: none;
+  border: 2px solid white;
+  border-radius: 4px;
+  transition: color 0.3s ease;
+  width: 100%; /* Proširenje linkova do kraja stranice */
+  box-sizing: border-box; /* Uključivanje paddinga i granica u širinu */
+  font-size: 18px; /* Povećana veličina slova na 18 piksela */
+  font-family: "Arial", sans-serif;
+  
+}
+
+#tasks li a:hover {
+  color: #45a049;
+}

@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ task.name }}</title>
+    <link rel="stylesheet" href="{% static 'css/solve_task.css' %}">
+    <link rel="icon" href="{% static 'images/logo.png' %}">
+
+</head>
+<body>
+
+    <div class="container">
+        <h1>{{ task.name }}</h1>
+        <p>{{ task.text }}</p>
+
+        <form method="POST">
+            {% csrf_token %}
+            <label for="code">Write your code here:</label>
+            <textarea id="code" name="code" required>{{ request.POST.code }}</textarea>
+
+            <button type="submit">Submit</button>
+        </form>
+        {{message}}
+        {% if correct %}
+        <a href="/attend_course/{{course.id}}"> Return to course</a>
+        <a href="/search_tasks"> Return to tasks</a>
+        <a href="/match_result/{{m_id}}"> See the result </a>
+        {% endif %}
+
+         {% if not correct %}
+        <a href="/match_result/{{m_id}}"> See the result </a>
+        {% endif %}
+        <div class="output">
+            <h2>Expected Output:</h2>
+            <pre>{{ task.correct_output }}</pre>
+        </div>
+
+    </div>
+
+</body>
+</html>

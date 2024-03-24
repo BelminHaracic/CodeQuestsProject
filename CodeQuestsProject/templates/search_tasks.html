@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Search Tasks</title>
+        <link rel="stylesheet" href="{% static 'css/search_tasks.css' %}">
+    <link rel="icon" href="{% static 'images/logo.png' %}">
+
+  </head>
+  <body>
+    <div id="search-container">
+      <form action="{% url 'search_tasks' %}" method="get">
+        <input type="text" id="search-bar" name="q" placeholder="Search tasks...">
+        <button type="submit">Search</button>
+      </form>
+    </div>
+    <ul id="tasks">
+      {% for task in tasks %}
+        <li><a href="/solve_task/{{task.id}}/0">{{ task.name }} - {{ task.text }}</a></li>
+      {% empty %}
+        <li>No tasks found.</li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>

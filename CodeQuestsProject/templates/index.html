@@ -1,0 +1,324 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" href="{% static 'images/logo.png' %}">
+
+</head>
+    <meta charset="UTF-8">
+    <title>Code Quests - Learn to Code and Level Up Your Skills</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <!-- CSS files -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<!-- JavaScript files -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+
+<body class="main-layout">
+
+    <!-- header -->
+    <header>
+      <div class="header">
+         <div class="container-fluid">
+            <div class="row d_flex">
+               <div class=" col-md-2 col-sm-3 col logo_section">
+                  <div class="full">
+                     <div class="center-desk">
+                      <div class="logo">
+                        <a href="index.html"><img src="{% static 'images/logo.png' %}" alt="#" /></a>
+                     </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-8 col-sm-9">
+                  <nav class="navigation navbar navbar-expand-md navbar-dark ">
+                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+                     <span class="navbar-toggler-icon"></span>
+                     </button>
+                     <div class="collapse navbar-collapse" id="navbarsExample04">
+                        <ul class="navbar-nav mr-auto">
+                           <li class="nav-item active">
+                              <a class="nav-link" href="/admin/">ADMIN</a>
+                           </li>
+                           <li class="nav-item">
+                              <a class="nav-link" href="#" data-toggle="modal" data-target="#registrationModal">
+                                 REGISTRATION
+                              </a>
+                           </li>
+                           </li>
+                           <li class="nav-item">
+                              <a class="nav-link" href="#" data-toggle="modal" data-target="#loginModal">           
+                                 LOGIN
+                                 </a>
+                              </li>
+                           </li>
+                           <li class="nav-item">
+                              <a class="nav-link" href="/logout">LOGOUT </a>
+                           </li>
+                           <li class="nav-item">
+                              <a class="nav-link" href="/search_tasks">Search</a>
+                           </li>
+                           <li class="nav-item">
+                              <a class="nav-link" href="/view_courses">View Courses</a>
+                           </li>
+                           <li class="nav-item">
+                              <a class="nav-link" href="/join_queue">Start Match</a>
+                           </li>
+                        </ul>
+                     </div>
+                  </nav>
+               </div>
+              
+            </div>
+         </div>
+      </div>
+   </header>
+   <!-- end header -->
+ 
+  
+  
+  
+<!-- Login Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="loginModalLabel">Login</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Login form goes here -->
+        <form method="POST" action="login">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="Email">Email:</label>
+                <input type="email" class="form-control" id="email" name="email">
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" id="password" name="password">
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Registration Modal -->
+<div class="modal fade" id="registrationModal" tabindex="-1" role="dialog" aria-labelledby="registrationModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="registrationModalLabel">Registration</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Registration form goes here -->
+        <form method="post" action="{% url 'registration' %}" >
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" id="mail" name="email">
+          </div>
+          <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" class="form-control" id="username" name="username">
+          </div>
+          <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" class="form-control" id="pass" name="password">
+          </div>
+          <div class="form-group">
+            <label for="password">Confirm Password:</label>
+            <input type="password" class="form-control" id="confirm_password" name="confirm_password">
+          </div>
+          <div class="form-group">
+            <label for="dob">Date of Birth:</label>
+            <input type="date" class="form-control" id="dob" name="date_of_birth">
+          </div>
+          <div class="form-group">
+              <label for="first_name">First Name:</label>
+              <input type="text" class="form-control" id="first_name" name="name">
+          </div>
+
+        <div class="form-group">
+          <label for="last_name">Last Name:</label>
+          <input type="text" class="form-control" id="last_name" name="surname">
+        </div>
+
+          <button type="submit" class="btn btn-primary">Register</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+</div>
+
+
+ <!-- we_do -->
+ <div class="we_do">
+<div class="container">   
+<div class="row">   
+  {% if user.is_authenticated %}
+  <div class="welcome-container">
+    <h1 class="welcome-heading">Welcome {{user.username}}</h1>
+  </div>
+{% endif %}
+
+<style>
+
+
+  .welcome-heading {
+    margin-top: 50px;
+    text-align: center;
+    font-weight: bold;
+  }
+  
+</style>
+
+<div class="col-md-12"> 
+        
+<div class="titlepage text_align_center">
+  
+<h2>Kako si</h2>
+           </div>   
+</div>
+  
+</div>
+   
+<div class="row">
+     
+<div class="col-md-12">
+           <div class="text-center"> 
+            <button class="btn-secondary-custom">Dobro sam</button>
+          
+            <button class="btn-secondary">Loše sam</button>      
+</div>
+</div>
+</div>
+</div>
+  
+ 
+</div>
+
+</div>
+</div>
+ <!-- end we_do -->
+
+ <!-- footer -->
+ <footer>
+    <div class="footer">
+       <div class="container">
+          <div class="row">
+             
+             <div class="col-md-9">
+                <form class="newslatter_form">
+                   <input class="ente" placeholder="Enter your email" type="text" name="Enter your email">
+                   <button class="subs_btn">Sbscribe Now</button>
+                </form>
+             </div>
+             <div class="col-md-3 col-sm-6"
+             >
+                <div class="Informa helpful">
+                   <h3>Useful  Link</h3>
+                   <ul>
+                      <li><a href="index.html">Home</a></li>
+                      <li><a href="about.html">About</a></li>
+                      <li><a href="we_do.html">What we do</a></li>
+                      <li><a href="portfolio.html">Portfolio</a></li>
+                      <li><a href="contact.html">Contact us</a></li>
+                   </ul>
+                </div>
+             </div>
+             <div class="col-md-3 col-sm-6">
+                <div class="Informa">
+                   <h3>News</h3>
+                   <ul>
+                      <li>It is a long established                            
+                      </li>
+                      <li>fact that a reader will                           
+                      </li>
+                      <li>be distracted by the                           
+                      </li>
+                      <li>readable content of a                              
+                      </li>
+                      <li>page when                          
+                      </li>
+                   </ul>
+                </div>
+             </div>
+             <div class="col-md-3 col-sm-6">
+                <div class="Informa">
+                   <h3>company</h3>
+                   <ul>
+                      <li>It is a long established                             
+                      </li>
+                      <li>fact that a reader will                            
+                      </li>
+                      <li>be distracted by the                          
+                      </li>
+                      <li>readable content of a                              
+                      </li>
+                      <li>page when                          
+                      </li>
+                   </ul>
+                </div>
+             </div>
+             <div class="col-md-3 col-sm-6">
+                <div class="Informa conta">
+                   <h3>contact Us</h3>
+                   <ul>
+                      <li> <a href="Javascript:void(0)"> <i class="fa fa-map-marker" aria-hidden="true"></i> Location
+                         </a>
+                      </li>
+                      <li> <a href="Javascript:void(0)"><i class="fa fa-phone" aria-hidden="true"></i> Call +01 1234567890
+                         </a>
+                      </li>
+                      <li> <a href="Javascript:void(0)"> <i class="fa fa-envelope" aria-hidden="true"></i> demo@gmail.com
+                         </a>
+                      </li>
+                   </ul>
+                </div>
+             </div>
+          </div>
+       </div>
+       <div class="copyright text_align_left">
+          <div class="container">
+             <div class="row d_flex">
+                <div class="col-md-6">
+                   <p>© 2020 All Rights Reserved.  <a href="https://html.design/"> Free Html Template</a></p>
+                </div>
+                <div class="col-md-6">
+                   <ul class="social_icon text_align_center">
+                      <li> <a href="Javascript:void(0)"><i class="fa fa-facebook-f"></i></a></li>
+                      <li> <a href="Javascript:void(0)"><i class="fa fa-twitter"></i></a></li>
+                      <li> <a href="Javascript:void(0)"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></li>
+                      <li> <a href="Javascript:void(0)"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                      <li> <a href="Javascript:void(0)"><i class="fa fa-youtube-play" aria-hidden="true"></i></a></li>
+                   </ul>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+ </footer>
+ <!-- end footer -->
+  
+
+</body>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.3/umd/popper.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+</html>
